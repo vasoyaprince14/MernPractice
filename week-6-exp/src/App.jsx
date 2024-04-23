@@ -1,25 +1,50 @@
 import { useState } from 'react'
 import './App.css'
-
+let id =4;
 function App() {
- const [title,setTitle]=useState("prince");
-//  setTitle("my name is" + Math.random());
-  function updateUI(){
-    setTitle("my name is" + Math.random());
-  }
+
+  const [todos,setTodos]=useState([{
+    id:1,
+    title:"gym",
+    description:"go to gym"
+  },
+{
+  id:2,
+  title:"food",
+  description:"eat food by today"
+},
+{
+  id:3,
+  title:"bgmi",
+  description:"complete rank push"
+}])
+
+// console.log(todos);
+function addTodo(){
+  
+  setTodos([...todos,{
+    id:id++,
+    title:Math.random() +` for ${id} this is title`,
+    description:Math.random ()+`this is descp`
+
+  }])
+}
   return (
     <>
-    <button onClick={updateUI}>click me</button>
-    <Header title={title}></Header>
-    <Header title="harkirat"></Header>
+    <button onClick={addTodo}>  Add a todo</button>
+    {todos.map((todo)=>{
+      return <Todo  key={todo.id} title={todo.title} description={todo.description}></Todo>
+    })}
   
     </>
   )
 }
-function Header({title}){
+
+function Todo({title,description}){
 
   return<>
-  <div>{title}</div>
+  <h1>{title}</h1>
+  <h5>{description}</h5>
   </>
 }
 
