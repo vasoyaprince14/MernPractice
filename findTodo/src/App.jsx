@@ -52,10 +52,10 @@ function App() {
     </>
   )
 }
-function Todo({id}){
+function Todo({props}){
     const [todos, setTodos] = useState({});
   useEffect(()=>{
-    axios.get(`https://sum-server.100xdevs.com/todo?id=${id}`)
+    axios.get(`https://sum-server.100xdevs.com/todo?id=${props.id}`)
     .then((response)=>{
      console.log(response.data);
       setTodos(response.data.todo);
