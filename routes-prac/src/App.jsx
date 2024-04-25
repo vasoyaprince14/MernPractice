@@ -21,7 +21,7 @@ function App() {
     </button>
      <BrowserRouter>
      <Routes>
-      <Route path ="/dashboard" element ={<Dashboard></Dashboard>}/>
+      <Route path ="/dashboard" element ={<Dashboard/>}/>
       <Route path ="/Landing" element ={<Landing/>}/>
      </Routes>
      </BrowserRouter>
