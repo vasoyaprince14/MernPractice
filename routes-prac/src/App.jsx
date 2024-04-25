@@ -1,7 +1,10 @@
-// import { useState } from 'react'
+import {Suspense, lazy, useState } from 'react'
+ 
+// import { lazy, useState, startTransition } from 'react';
 import { BrowserRouter,Routes,Route,useNavigate } from 'react-router-dom'
-import { Dashboard } from './components/Dashboard'
-import { Landing } from './components/Landing'
+// import { Dashboard } from './components/Dashboard'
+const Landing = lazy(()=> import("./components/Landing"));
+const Dashboard = lazy(()=> import("./components/Dashboard"));
 
 function App() {
   // const [count, setCount] = useState(0)
@@ -12,12 +15,12 @@ function App() {
      <BrowserRouter>
      <Appbar/>
      <Routes>
-      <Route path ="/dashboard" element ={<Dashboard/>}/>
-      <Route path ="/Landing" element ={<Landing/>}/>
+      <Route path ="/dashboard" element ={<Suspense fallback={"loading"}><Dashboard/></Suspense>}/>
+      <Route path ="/landing" element ={<Suspense fallback={"loading"}><Landing/></Suspense>}/>
      </Routes>
      </BrowserRouter>
     </>
-  )
+  );
 }
 function Appbar(){
   const navigate =useNavigate();
@@ -29,7 +32,7 @@ function Appbar(){
       dashboard
     </button>
      <button onClick={()=>{
-    navigate('/Landing');
+    navigate('/landing');
     }}>
       landing
     </button>
